@@ -65,7 +65,11 @@ def parse_prices(text):
 
 def ddg_search(query):
     url = f"https://html.duckduckgo.com/html/?q={urllib.parse.quote(query)}&kl=au-en"
-    return parse_prices(to_text(fetch(url)))
+    html = fetch(url)
+    text = to_text(html)
+    print(f"    RAW HTML length: {len(html)}")
+    print(f"    TEXT sample: {text[:300]}")
+    return parse_prices(text)
 
 def search_store(store, item):
     print(f"  [{store['label']}] searching...")
